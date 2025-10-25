@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import icon from '../../assets/icon.svg';
 import idle from '../../assets/images/idle.jpg';
 import speaking from '../../assets/images/speaking.jpg';
@@ -77,20 +77,34 @@ function Hello() {
     }
   };
 
-  // Clean up the URL when the component unmounts (good practice)
-  // You might also want to clean it up when a new recording starts, which we do in startListening.
-  // Although not strictly necessary for this minimal example, you might add a useEffect for cleanup.
+  // Cleanup on unmount: stop recorder and revoke any object URL
+  useEffect(() => {
+    return () => {
+      const recorder = mediaRecorderRef.current;
+      if (recorder && recorder.state !== 'inactive') {
+        try {
+          recorder.stop();
+        } catch {
+          /* ignore */
+        }
+      }
+      if (audioUrl) {
+        URL.revokeObjectURL(audioUrl);
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <div>
       <div className="Hello">
+      <div className="drag-region">
         {isListening ? (
           <img width="200" alt="icon" src={listening} />
         ) : (
           <img width="200" alt="icon" src={idle} />
         )}
       </div>
-      <div className="Hello">
+      <div style={{ marginTop: 12 }}>
         <button
           type="button"
           onClick={isListening ? stopListening : startListening}
@@ -98,22 +112,6 @@ function Hello() {
           {isListening ? 'Stop Recording' : 'Start Listening'}
         </button>
       </div>
-
-      {/* 🎧 Audio Player Section */}
-      {audioUrl && (
-        <div className="Audio-Playback">
-          <h3>Playback Test</h3>
-          {/* eslint-disable-next-line react/jsx-no-comment-textnodes */}
-          {/* The <audio> element is native HTML for playing audio */}
-          {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-          <audio controls src={audioUrl}>
-            {/* Your browser does not support the audio element. */}
-            <track kind="captions" />
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-      )}
-      {/* 🎧 End Audio Player Section */}
     </div>
   );
 }
