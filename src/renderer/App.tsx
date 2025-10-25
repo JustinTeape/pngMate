@@ -2,7 +2,10 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import icon from '../../assets/icon.svg';
-import testImage from '../../assets/images/testImage.jpg';
+import idle from '../../assets/images/idle.jpg';
+import speaking from '../../assets/images/speaking.jpg';
+import listening from '../../assets/images/listening.jpg';
+
 import './App.css';
 
 function Hello() {
@@ -84,7 +87,7 @@ function Hello() {
   return (
     <div>
       <div className="Hello">
-        <img width="200" alt="icon" src={testImage} />
+        <img width="200" alt="icon" src={idle} />
       </div>
       <div className="Hello">
         <button
