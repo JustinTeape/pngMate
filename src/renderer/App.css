@@ -1,0 +1,16 @@
+.drag-region {
+  /* This parent div no longer needs any drag properties */
+  display: inline-block; 
+}
+
+.draggable-png {
+  /* The IMAGE itself is now the drag handle */
+  -webkit-app-region: drag; 
+  
+  /* These are still needed to prevent the browser's "save image" drag */
+  -webkit-user-drag: none;
+  user-select: none;
+  
+  /* You can change the cursor to show it's movable */
+  cursor: grab;
+}

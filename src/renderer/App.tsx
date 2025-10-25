@@ -2,13 +2,22 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { app, BrowserWindow } from 'electron';
 import icon from '../../assets/icon.svg';
 import testImage from '../../assets/images/testImage.jpg';
+import DraggableImage from '../components/DraggableImage';
 import './App.css';
 
 function Hello() {
+  const handleLogoClick = () => {
+    console.log('Logo was clicked!');
+  };
   return (
     <div>
       <div className="Hello">
-        <img width="200" alt="icon" src={testImage} />
+        <DraggableImage
+          src={testImage}
+          alt="Main Logo"
+          width={200}
+          onClick={handleLogoClick}
+        />
       </div>
       <h1>electron-react-boilerplate</h1>
       <div className="Hello">
