@@ -133,13 +133,7 @@ app
   .then(() => {
     createWindow();
     app.on('activate', () => {
-      const win = new BrowserWindow({
-        transparent: true,
-      });
-      // On macOS it's common to re-create a window in the app when the
-      // dock icon is clicked and there are no other windows open.
       if (mainWindow === null) createWindow();
     });
-    app.whenReady().then(createWindow);
   })
   .catch(console.log);

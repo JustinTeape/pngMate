@@ -1,7 +1,4 @@
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import { app, BrowserWindow } from 'electron';
-import icon from '../../assets/icon.svg';
-import testImage from '../../assets/images/testImage.jpg';
 import DraggableImage from '../components/DraggableImage';
 import idle from '../../assets/images/idle.jpg';
 import speaking from '../../assets/images/speaking.jpg';
@@ -11,21 +8,20 @@ import './App.css';
 
 function Hello() {
   const handleLogoClick = () => {
-    console.log('Logo was clicked!');
+    console.log('Logo clicked!');
   };
+
   return (
-    <div>
+    <div className="drag-region">
       <div className="Hello">
-        <DraggableImage
-          src={testImage}
+        <img
+          src={idle}
           alt="Main Logo"
           width={200}
           onClick={handleLogoClick}
+          className="no-drag"
         />
-        <img width="200" alt="icon" src={idle} />
-      </div>
-      <div className="Hello">
-        <button type="button">
+        <button type="button" className="no-drag">
           Listen
         </button>
       </div>
