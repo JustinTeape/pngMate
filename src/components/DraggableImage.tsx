@@ -2,6 +2,7 @@
 
 import React from 'react';
 import '../renderer/App.css';
+
 interface DraggableImageProps {
   src: string;
   alt: string;
@@ -9,24 +10,19 @@ interface DraggableImageProps {
   onClick: () => void;
 }
 
-const DraggableImage: React.FC<DraggableImageProps> = ({
-  src,
-  alt,
-  width,
-  onClick,
-}) => {
+function DraggableImage({ src, alt, width, onClick }: DraggableImageProps) {
   return (
     // This div is the handle that moves the entire window
     <div className="drag-region">
-      <img
-        src={src} // Use the prop
-        alt={alt} // Use the prop
-        width={width}
-        className="draggable-png"
-        onClick={onClick} // Use the prop
-      />
+      <button
+        type="button"
+        className="image-button draggable-png"
+        onClick={onClick}
+      >
+        <img src={src} alt={alt} width={width} />
+      </button>
     </div>
   );
-};
+}
 
 export default DraggableImage;
