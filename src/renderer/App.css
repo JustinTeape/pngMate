@@ -28,3 +28,24 @@ html, body {
 .audio_button {
   margin-left: 50px;
 }
+
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.floating-group {
+  /* 1. This makes the whole group "float" on the screen */
+  position: absolute;
+  top: 50px;     /* Adjust this to move the group up/down */
+  left: 50px;    /* Adjust this to move the group left/right */
+
+  /* 2. This is the magic: it aligns the items inside side-by-side */
+  display: flex;
+  align-items: center; /* This vertically centers the head and box */
+}
+.button-stack {
+  display: flex;
+  flex-direction: column; /* This makes its children stack vertically */
+  align-items: center;   /* This centers the button under the head */
+}

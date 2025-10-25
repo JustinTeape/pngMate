@@ -1,0 +1,16 @@
+.text-box {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  max-height: 150px;
+  overflow-y: auto;  
+}
+
+.text-box p {
+  margin: 0;
+  flex: 1;
+  color: #333;
+}
