@@ -13,4 +13,6 @@
   
   /* You can change the cursor to show it's movable */
   cursor: grab;
+}.Hello{
+    text-align: center;
 }
