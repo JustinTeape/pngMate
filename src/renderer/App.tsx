@@ -30,7 +30,8 @@ function Hello() {
       mediaRecorder.ondataavailable = (event) => {
         audioChunksRef.current.push(event.data);
       };
-
+      /*
+      audio testing code
       // 4. Set up stop handling (when recording ends)
       mediaRecorder.onstop = () => {
         // This is the key change: process the Blob and create a URL
@@ -40,19 +41,15 @@ function Hello() {
 
         // 🔑 1. Create a playable URL from the Blob
         const url = URL.createObjectURL(audioBlob);
-
         // 🔑 2. Store the URL in state so the component re-renders with the player
         setAudioUrl(url);
-
         // Clear chunks for the next recording
         audioChunksRef.current = [];
 
-        console.log(
-          'Recording stopped. Audio Blob created and URL generated:',
-          url,
-        );
         // You would typically call a function here to send the audioBlob to a Speech-to-Text service.
+
       };
+      */
 
       // 5. Start recording and update state
       mediaRecorder.start();
@@ -87,7 +84,11 @@ function Hello() {
   return (
     <div>
       <div className="Hello">
-        <img width="200" alt="icon" src={idle} />
+        {isListening ? (
+          <img width="200" alt="icon" src={listening} />
+        ) : (
+          <img width="200" alt="icon" src={idle} />
+        )}
       </div>
       <div className="Hello">
         <button
