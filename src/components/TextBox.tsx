@@ -5,8 +5,12 @@ interface TextBoxProps {
   children: React.ReactNode;
 }
 
-const TextBox: React.FC<TextBoxProps> = ({ children }) => {
-  return <div className="text-box">{children}</div>;
-};
+function TextBox({ children }: TextBoxProps) {
+  return (
+    <div className="text-box-wrapper">
+      <div className="text-box">{children}</div>
+    </div>
+  );
+}
 
 export default TextBox;
