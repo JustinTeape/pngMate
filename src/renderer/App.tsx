@@ -96,7 +96,7 @@ function Hello() {
   }, []);
 
   return (
-      <div className="Hello">
+    <div className="Hello">
       <div className="drag-region">
         {isListening ? (
           <img width="200" alt="icon" src={listening} />
