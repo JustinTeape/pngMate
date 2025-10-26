@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react'; // 🛑 REMOVED useEffect import
+import { useState } from 'react'; // 🛑 REMOVED useEffect importnp
 import TextBox from '../components/TextBox';
 
 import idle from '../../assets/images/idle.jpg';
@@ -19,16 +19,9 @@ import './App.css';
 function Hello() {
   const [isBotRunning, setIsBotRunning] = useState<boolean>(false);
 
-  // 🛑 REMOVED: animationIndex state
-  // 🛑 REMOVED: speakingAnimationActive state
-
   const { transcript, error } = useTranscript(isBotRunning, 1000);
   const { isSpeaking } = useBotStatus(isBotRunning, 250);
 
-  // 🛑 REMOVED: The entire useEffect block that contained the setInterval/setTimeout logic.
-  // The image will now rely entirely on the polled 'isSpeaking' state.
-
-  // 4. FORMAT CONTENT: No change needed here
   const transcriptString = transcript
     .map((msg) => `${msg.sender}: ${msg.text}`)
     .join('\n');
@@ -39,7 +32,6 @@ function Hello() {
     'Click "Start" to begin your conversation with Anthony, someone with a knack for finance who is your friend for everything related!';
 
   // 5. STATUS IMAGE: Direct conditional logic based on 'isSpeaking'
-  // 🛑 NEW LOGIC: If isSpeaking is true, show 'speaking' image.
   const statusImage = isBotRunning ? (isSpeaking ? speaking : listening) : idle;
 
   return (
