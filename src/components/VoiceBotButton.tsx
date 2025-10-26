@@ -17,7 +17,6 @@ interface BotResponse {
 interface VoiceBotButtonProps {
   isBotRunning: boolean;
   setIsBotRunning: Dispatch<SetStateAction<boolean>>;
-  // 🛑 NEW: Props for configuration data
   elevenlabsApiKey: string;
   agentId: string;
 }

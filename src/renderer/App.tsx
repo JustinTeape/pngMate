@@ -19,13 +19,9 @@ import './App.css';
 function Hello() {
   const [isBotRunning, setIsBotRunning] = useState<boolean>(false);
 
-  // 🛑 REMOVED: animationIndex state
-  // 🛑 REMOVED: speakingAnimationActive state
-
   const { transcript, error } = useTranscript(isBotRunning, 1000);
   const { isSpeaking } = useBotStatus(isBotRunning, 250);
 
-  // 🛑 REMOVED: The entire useEffect block that contained the setInterval/setTimeout logic.
   // The image will now rely entirely on the polled 'isSpeaking' state.
 
   // 4. FORMAT CONTENT: No change needed here
@@ -39,7 +35,7 @@ function Hello() {
     'Click "Start" to begin your conversation with Anthony, someone with a knack for finance who is your friend for everything related!';
 
   // 5. STATUS IMAGE: Direct conditional logic based on 'isSpeaking'
-  // 🛑 NEW LOGIC: If isSpeaking is true, show 'speaking' image.
+  // If isSpeaking is true, show 'speaking' image.
   const statusImage = isBotRunning ? (isSpeaking ? speaking : listening) : idle;
 
   return (
