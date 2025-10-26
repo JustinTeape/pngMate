@@ -53,8 +53,8 @@ function Hello() {
             <VoiceBotButton
               isBotRunning={isBotRunning}
               setIsBotRunning={setIsBotRunning}
-              elevenlabsApiKey="sk_e8f43e649e8a8a3676e817987ab4e70692abf6704e845c46"
-              agentId="agent_3401k8f08yv3extbzk530f3vv3hd"
+              elevenlabsApiKey="sk_c85117b16db81879e98f19fc5e7834f9691d4a1cd6119b5e"
+              agentId="agent_1901k8f903wkf08tzhfdazj9gj9f"
             />
           </div>
         </div>

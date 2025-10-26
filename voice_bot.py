@@ -17,7 +17,7 @@ transcript_lock = threading.Lock()
 is_speaking: bool = False
 
 # 🛑 NEW GLOBAL CONSTANT: Estimate reading speed in seconds per character (s/char)
-READING_SPEED_S_PER_CHAR = 0.07
+READING_SPEED_S_PER_CHAR = 0.05
 
 # --- Helper Function for Delayed Reset ---
 
