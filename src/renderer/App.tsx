@@ -1,31 +1,46 @@
+// App.tsx - Simplified Logic for Real-time Status
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-nested-ternary */
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState } from 'react'; // Only useState is strictly needed now
+import { useState } from 'react'; // 🛑 REMOVED useEffect import
 import TextBox from '../components/TextBox';
-// Removed: icon, idle, speaking, listening imports
+
 import idle from '../../assets/images/idle.jpg';
 import listening from '../../assets/images/listening.jpg';
+import speaking from '../../assets/images/speaking.jpg';
 import VoiceBotButton from '../components/VoiceBotButton';
 
-// 1. IMPORT THE NEW HOOK AND TYPES
 import { useTranscript } from '../hooks/useTranscript';
+import useBotStatus from '../hooks/useBotStatus';
 
 import './App.css';
 
 function Hello() {
-  // 2. LIFTED STATE: State to track if the bot session is active (controlled by VoiceBotButton)
   const [isBotRunning, setIsBotRunning] = useState<boolean>(false);
 
-  // 3. USE HOOK: Fetch the transcript from the backend every 1000ms (1 second)
+  // 🛑 REMOVED: animationIndex state
+  // 🛑 REMOVED: speakingAnimationActive state
+
   const { transcript, error } = useTranscript(isBotRunning, 1000);
+  const { isSpeaking } = useBotStatus(isBotRunning, 250);
 
-  // 4. FORMAT CONTENT: Convert the array of messages into a single string for the TextBox
-  const displayContent: string = transcript
+  // 🛑 REMOVED: The entire useEffect block that contained the setInterval/setTimeout logic.
+  // The image will now rely entirely on the polled 'isSpeaking' state.
+
+  // 4. FORMAT CONTENT: No change needed here
+  const transcriptString = transcript
     .map((msg) => `${msg.sender}: ${msg.text}`)
-    .join('\n\n');
+    .join('\n');
 
-  // 5. STATUS IMAGE: Toggle between images based on session status
-  const statusImage = isBotRunning ? listening : idle;
+  const displayContent =
+    error ||
+    transcriptString ||
+    'Click "🟢 Start Voice Bot" to begin your conversation.';
+
+  // 5. STATUS IMAGE: Direct conditional logic based on 'isSpeaking'
+  // 🛑 NEW LOGIC: If isSpeaking is true, show 'speaking' image.
+  const statusImage = isBotRunning ? (isSpeaking ? speaking : listening) : idle;
 
   return (
     <div className="Hello">
@@ -35,20 +50,17 @@ function Hello() {
             <img width="200" alt="icon" src={statusImage} />
           </div>
           <div style={{ marginTop: 12 }}>
-            {/* 6. PASS PROPS: Provide the state and setter to the VoiceBotButton */}
             <VoiceBotButton
               isBotRunning={isBotRunning}
               setIsBotRunning={setIsBotRunning}
+              elevenlabsApiKey="sk_e8f43e649e8a8a3676e817987ab4e70692abf6704e845c46"
+              agentId="agent_3401k8f08yv3extbzk530f3vv3hd"
             />
           </div>
         </div>
 
-        {/* 7. DISPLAY TRANSCRIPT: Render the fetched content */}
-        <TextBox>
-          {error ||
-            displayContent ||
-            'Click "🟢 Start Voice Bot" to begin your conversation.'}
-        </TextBox>
+        {/* Display Transcript */}
+        <TextBox>{displayContent}</TextBox>
       </div>
     </div>
   );
