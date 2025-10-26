@@ -97,11 +97,7 @@ function VoiceBotButton({
       disabled={loading}
       style={{ backgroundColor: isBotRunning ? '#cc0000' : '#00cc00' }}
     >
-      {loading
-        ? '...'
-        : isBotRunning
-          ? '🔴 End Conversation'
-          : '🟢 Start Voice Bot'}
+      {loading ? '...' : isBotRunning ? 'End Conversation' : 'Start'}
       {message && (
         <div style={{ fontSize: '0.8em', marginTop: '5px' }}>{message}</div>
       )}

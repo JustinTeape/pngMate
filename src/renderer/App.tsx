@@ -36,7 +36,7 @@ function Hello() {
   const displayContent =
     error ||
     transcriptString ||
-    'Click "🟢 Start Voice Bot" to begin your conversation.';
+    'Click "Start" to begin your conversation with Anthony, someone with a knack for finance who is your friend for everything related!';
 
   // 5. STATUS IMAGE: Direct conditional logic based on 'isSpeaking'
   // 🛑 NEW LOGIC: If isSpeaking is true, show 'speaking' image.
